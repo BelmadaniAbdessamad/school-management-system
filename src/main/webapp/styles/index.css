@@ -1,0 +1,56 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: #f0f2f5;
+}
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:.7rem;
+    background-color: white;
+    box-shadow: 0 0 .2rem 0 black ;
+}
+header h3{
+    width: 100px;
+    font-style: italic;
+    margin-left: 3rem;
+    cursor: pointer;
+    
+    
+   
+}
+header ul{
+    list-style: none;
+    display: flex;
+    margin: 0rem 10rem 0rem 0rem; 
+}
+header li{
+    padding: .5rem;
+    color: black;
+    cursor: pointer;
+    transition: .7s;
+    border-radius: .2rem;
+}
+header li:hover{
+    background-color: gainsboro;
+}
+header li a{
+    text-decoration: none;
+    color: inherit;
+}
+.active-tab{
+    border-bottom: greenyellow 2px solid;
+}
+
+/* main css*/
+
+main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 4rem;
+}
