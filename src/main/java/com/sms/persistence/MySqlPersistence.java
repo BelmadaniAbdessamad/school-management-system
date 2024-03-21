@@ -2,6 +2,7 @@ package com.sms.persistence;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -68,7 +69,29 @@ public class MySqlPersistence implements Persistence {
 	@Override
 	public boolean insertStudent(Etudiant et) {
 		// TODO Auto-generated method stub
-		return false;
+
+		try {
+			Connection conn = getConnection();
+			PreparedStatement pstmt = conn
+					.prepareStatement("INSERT INTO etudiants (cne,nom, prenom,filiere,tel) VALUES (?,?,?,?,?)");
+			pstmt.setInt(1, et.getCne());
+			pstmt.setString(2, et.getNom());
+			pstmt.setString(3, et.getPrenom());
+			pstmt.setInt(4, 1);
+			pstmt.setString(5, et.getTel());
+
+			int rowsAffected = pstmt.executeUpdate(); // Use executeUpdate for INSERT, UPDATE, DELETE queries
+
+			pstmt.close();
+			conn.close();
+
+			return rowsAffected > 0;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return false;
+		}
+		
 	}
 
 	@Override
