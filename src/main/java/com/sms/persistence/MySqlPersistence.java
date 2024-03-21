@@ -169,11 +169,19 @@ public class MySqlPersistence implements Persistence {
 		et.setCne(2020);
 		et.setTel("20202020");
 		
-		if(test.insertStudent(et)) System.out.println("Student Insrted Successfully");
+		//if(test.insertStudent(et)) System.out.println("Student Insrted Successfully");
 ;		List<Etudiant> ets = test.getAllStudents();
 
 		for (Etudiant ett : ets) {
 			System.out.println(ett.toString());
+		}
+		
+		Etudiant e = test.findStudentByFullName("belmadani abdessamad");
+		
+		if(e != null) {
+			System.out.println(e.toString());
+		}else {
+			System.out.println("no result found");
 		}
 
 	}
