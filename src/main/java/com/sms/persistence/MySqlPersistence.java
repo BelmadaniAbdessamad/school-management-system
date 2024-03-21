@@ -156,10 +156,17 @@ public class MySqlPersistence implements Persistence {
 
 	public static void main(String[] args) {
 		MySqlPersistence test = new MySqlPersistence();
-		List<Etudiant> ets = test.getAllStudents();
+		Etudiant et = new Etudiant();
+		et.setNom("Bou3boula");
+		et.setPrenom("Debloum");
+		et.setCne(2020);
+		et.setTel("20202020");
+		
+		if(test.insertStudent(et)) System.out.println("Student Insrted Successfully");
+;		List<Etudiant> ets = test.getAllStudents();
 
-		for (Etudiant et : ets) {
-			System.out.println(et.toString());
+		for (Etudiant ett : ets) {
+			System.out.println(ett.toString());
 		}
 
 	}
