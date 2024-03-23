@@ -98,12 +98,26 @@ public class MySqlPersistence implements Persistence {
 			e.printStackTrace();
 			return false;
 		}
-		
+
 	}
 
 	@Override
-	public void deleteStudent(int id) {
+	public boolean deleteStudent(int id) {
 		// TODO Auto-generated method stub
+		try {
+			Connection conn = getConnection();
+			PreparedStatement pstmt = conn.prepareStatement("DELETE FROM etudiants WHERE id = ?;");
+			pstmt.setInt(1, id);
+			int rowsAffected = pstmt.executeUpdate(); // Use executeUpdate for INSERT, UPDATE, DELETE queries
+			pstmt.close();
+			conn.close();
+
+			return rowsAffected > 0;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return false;
+		}
 
 	}
 
