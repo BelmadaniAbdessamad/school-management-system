@@ -177,26 +177,28 @@ public class MySqlPersistence implements Persistence {
 
 	public static void main(String[] args) {
 		MySqlPersistence test = new MySqlPersistence();
-		Etudiant et = new Etudiant();
-		et.setNom("Bou3boula");
-		et.setPrenom("Debloum");
-		et.setCne(2020);
-		et.setTel("20202020");
-		
-		//if(test.insertStudent(et)) System.out.println("Student Insrted Successfully");
-;		List<Etudiant> ets = test.getAllStudents();
+		/*
+		 * Etudiant et = new Etudiant(); et.setNom("Bou3boula");
+		 * et.setPrenom("Debloum"); et.setCne(2020); et.setTel("20202020");
+		 */
+
+		// if(test.insertStudent(et)) System.out.println("Student Insrted
+		// Successfully");
+		if (test.deleteStudent(17)) {
+			System.out.println("deleted succesfully");
+		}
+		List<Etudiant> ets = test.getAllStudents();
 
 		for (Etudiant ett : ets) {
 			System.out.println(ett.toString());
 		}
-		
-		Etudiant e = test.findStudentByFullName("belmadani abdessamad");
-		
-		if(e != null) {
-			System.out.println(e.toString());
-		}else {
-			System.out.println("no result found");
-		}
+
+		/*
+		 * Etudiant e = test.findStudentByFullName("belmadani abdessamad");
+		 * 
+		 * if(e != null) { System.out.println(e.toString()); }else {
+		 * System.out.println("no result found"); }
+		 */
 
 	}
 
