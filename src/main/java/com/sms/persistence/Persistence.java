@@ -11,7 +11,7 @@ public interface Persistence {
 	List<Etudiant> getAllStudents();
 	Etudiant findStudentByFullName(String fullName);
 	boolean insertStudent(Etudiant et);
-	void deleteStudent(int id);
+	boolean deleteStudent(int id);
 	boolean updateStudent(int id,Etudiant newData);
 	
 	List<Filiere> getAllMajors();
