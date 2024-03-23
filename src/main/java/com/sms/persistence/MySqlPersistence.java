@@ -62,13 +62,14 @@ public class MySqlPersistence implements Persistence {
 
 	@Override
 	public Etudiant findStudentByFullName(String fullName) {
-		
+
 		// TODO Auto-generated method stub
-		
-		for(Etudiant et : getAllStudents()) {
-			 String etFullName1 = et.getNom() + " " + et.getPrenom();
-			 String etFullName2 = et.getPrenom() + " " + et.getNom();
-			if(etFullName1.equalsIgnoreCase(fullName) || etFullName2.equalsIgnoreCase(fullName) )return et;
+
+		for (Etudiant et : getAllStudents()) {
+			String etFullName1 = et.getNom() + " " + et.getPrenom();
+			String etFullName2 = et.getPrenom() + " " + et.getNom();
+			if (etFullName1.equalsIgnoreCase(fullName) || etFullName2.equalsIgnoreCase(fullName))
+				return et;
 		}
 		return null;
 	}
