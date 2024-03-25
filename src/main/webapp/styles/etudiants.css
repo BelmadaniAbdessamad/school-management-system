@@ -1,0 +1,81 @@
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+.container {
+	max-width: 1200px;
+	margin: 20px auto;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+}
+
+/* Search bar styles */
+.search-container {
+	margin-bottom: 20px;
+}
+
+.search-container input[type="text"] {
+	padding: 10px;
+	width: 300px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.search-container button {
+	padding: 10px 20px;
+	background-color: #007bff;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+/* Table styles */
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+}
+
+th, td {
+	padding: 10px;
+	border: 1px solid #ccc;
+}
+
+th {
+	background-color: #007bff;
+	color: #fff;
+}
+
+/* Form styles */
+/* .insert-form {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .insert-form input[type="text"], 
+        .insert-form button {
+            padding: 10px;
+            margin-right: 10px;
+            border-radius: 5px;
+        }
+
+        .insert-form button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        } */
+.found {
+	color: white;
+	background-color: #28a745; /* Background color */
+}
+
+.table-title{
+   text-align: center;
+   margin-bottom:2rem;
+}
