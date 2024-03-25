@@ -69,10 +69,30 @@ public class Etudiant {
 		this.cne = cne;
 	}
 
+	
+	
+	public String getDepartement() {
+		return departement;
+	}
+
+	public void setDepartement(String departement) {
+		this.departement = departement;
+	}
+
+	
+	
+
 	@Override
 	public String toString() {
 		return "Etudiant [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", filiere=" + filiere + ", tel=" + tel
-				+ ", cne=" + cne + "]";
+				+ ", cne=" + cne + ", departement=" + departement + "]";
+	}
+
+	public boolean attributsAreValid() {
+		// TODO Auto-generated method stub
+		if( this.cne < 1 || this.nom.isBlank() || this.prenom.isBlank() || this.filiere.isBlank() || this.tel.isBlank())
+			return false;
+		return true;
 	}
 
 	
