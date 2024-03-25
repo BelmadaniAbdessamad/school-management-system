@@ -8,6 +8,7 @@ public class Etudiant {
 	private String filiere;
 	private String tel;
 	private int cne;
+	private String departement;
 	
 	
 	public Etudiant() {
