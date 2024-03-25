@@ -32,8 +32,8 @@ public class MySqlPersistence implements Persistence {
 
 			if (conn != null) {
 				Statement stmt = conn.createStatement();
-				ResultSet resultat = stmt.executeQuery("SELECT etudiants.id,cne,nom,prenom,tel,filieres.filiere " + ""
-						+ "  FROM etudiants,filieres" + " WHERE etudiants.filiere=filieres.id ;");
+				ResultSet resultat = stmt.executeQuery("SELECT etudiants.id,cne,nom,prenom,tel,filieres.filiere,departements.departement " + ""
+						+ "  FROM etudiants,filieres,departements" + " WHERE etudiants.filiere=filieres.id AND filieres.departement = departements.id ;");
 
 				while (resultat.next()) {
 					Etudiant et = new Etudiant();
@@ -43,7 +43,7 @@ public class MySqlPersistence implements Persistence {
 					et.setCne(resultat.getInt("cne"));
 					et.setTel(resultat.getString("tel"));
 					et.setFiliere(resultat.getString("filiere"));
-
+					et.setDepartement(resultat.getString("departement"));
 					etudiants.add(et);
 				}
 				stmt.close();
