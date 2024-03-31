@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Etudiants</title>
 <link rel="stylesheet" href="styles/index.css">
-<link rel="stylesheet" href="styles/etudiants.css">
+<link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
 	<header>
