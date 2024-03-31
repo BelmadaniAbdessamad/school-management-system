@@ -266,8 +266,41 @@ public class MySqlPersistence implements Persistence {
 
 	@Override
 	public List<Departement> getAllDepartements() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Departement> departements = new ArrayList<Departement>();
+
+		try {
+			Connection conn = this.getConnection();
+
+			if (conn != null) {
+				Statement stmt = conn.createStatement();
+				ResultSet resultat = stmt.executeQuery("SELECT d.id, d.departement ,\r\n"
+						+ "                    COUNT(DISTINCT s.id) AS student_count,\r\n"
+						+ "                    COUNT(DISTINCT m.id) AS major_count \r\n"
+						+ "                    FROM departements d\r\n"
+						+ "                    LEFT JOIN filieres m ON d.id = m.departement \r\n"
+						+ "                    LEFT JOIN etudiants s ON m.id = s.filiere \r\n"
+						+ "                   GROUP BY d.id, d.departement;");
+
+				while (resultat.next()) {
+					Departement depart = new Departement();
+					depart.setId(resultat.getInt("id"));
+					depart.setNom(resultat.getString("departement"));
+					depart.setEtudiantCount(resultat.getInt("student_count"));
+					depart.setFiliereCount(resultat.getInt("major_count"));
+					departements.add(depart);
+				}
+				stmt.close();
+				resultat.close();
+			}
+
+			conn.close();
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+
+		return departements;
 	}
 
 	@Override
