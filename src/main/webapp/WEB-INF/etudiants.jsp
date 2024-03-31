@@ -60,6 +60,7 @@
 							<th>filière</th>
 							<th>departement</th>
 							<th>tel</th>
+							<th>actions</th>
 
 						</tr>
 					</thead>
@@ -77,7 +78,10 @@
 							<td><%=t.getFiliere()%></td>
 							<td><%=t.getDepartement()%></td>
 							<td><%=t.getTel()%></td>
-
+							<td>
+							<form action="delete-student" method="post"><input value="<%=t.getId()%>" name="toDeleteId" required type="hidden">
+							<button type="submit">Delete</button></form>
+							</td>
 
 
 						</tr>
