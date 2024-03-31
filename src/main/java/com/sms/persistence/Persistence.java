@@ -20,12 +20,16 @@ public interface Persistence {
 	boolean insertMajor(Filiere fl);
 	boolean deleteMajor(int id);
 	boolean updateMajor(int id,Filiere newData);
+	Filiere findMajorByName(String name);
+	Filiere findMajorById(int id);
 	
 	Map<String, List<Filiere>> getAllDepartementsWithMajors();
 	List<Departement> getAllDepartements();
 	boolean insertDepartement(Departement depart);
 	boolean deleteDepartement(int id);
 	boolean updateDepartement(int id,Departement newData);
+	Departement findDepartByName(String name);
+	Departement findDepartById(int id);
 	
 
 }
