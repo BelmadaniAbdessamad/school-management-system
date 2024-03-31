@@ -252,4 +252,20 @@ public class MySqlPersistence implements Persistence {
 
 	}
 
+	@Override
+	public List<Departement> getAllDepartements() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Etudiant findStudentByCNE(int cne) {
+		for (Etudiant et : getAllStudents()) {
+			
+			if (et.getCne() == cne)
+				return et;
+		}
+		return null;
+	}
+
 }
