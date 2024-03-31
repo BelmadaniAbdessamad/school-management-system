@@ -11,6 +11,7 @@ public interface Service {
 	
 	List<Etudiant> getAllStudents();
 	Etudiant findStudentByFullName(String fullName);
+	Etudiant findStudentByCNE(int cne);
 	boolean insertStudent(Etudiant et);
 	boolean deleteStudent(int id);
 	boolean updateStudent(int id,Etudiant newData);
