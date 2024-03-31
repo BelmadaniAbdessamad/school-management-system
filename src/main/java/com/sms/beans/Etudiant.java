@@ -9,7 +9,7 @@ public class Etudiant {
 	private String tel;
 	private int cne;
 	private String departement;
-	
+	private int filiereId;
 	
 	public Etudiant() {
 		
@@ -82,6 +82,14 @@ public class Etudiant {
 	
 	
 
+	public int getFiliereId() {
+		return filiereId;
+	}
+
+	public void setFiliereId(int filiereId) {
+		this.filiereId = filiereId;
+	}
+
 	@Override
 	public String toString() {
 		return "Etudiant [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", filiere=" + filiere + ", tel=" + tel
@@ -90,7 +98,7 @@ public class Etudiant {
 
 	public boolean attributsAreValid() {
 		// TODO Auto-generated method stub
-		if( this.cne < 1 || this.nom.isBlank() || this.prenom.isBlank() || this.filiere.isBlank() || this.tel.isBlank())
+		if( this.cne < 1 || this.nom.isBlank() || this.prenom.isBlank() || this.filiereId<1 || this.tel.isBlank())
 			return false;
 		return true;
 	}
