@@ -79,7 +79,7 @@ public class DefaultService implements Service {
 	}
 
 	@Override
-	public void deleteMajor(int id) {
+	public boolean deleteMajor(int id) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -98,13 +98,16 @@ public class DefaultService implements Service {
 
 	@Override
 	public boolean insertDepartement(Departement depart) {
-		// TODO Auto-generated method stub
+		if(depart != null && !depart.getNom().isBlank()) {
+			return persistence.insertDepartement(depart);
+		}
 		return false;
 	}
 
 	@Override
-	public void deleteDepartement(int id) {
-		// TODO Auto-generated method stub
+	public boolean deleteDepartement(int id) {
+		
+		return persistence.deleteDepartement(id);
 		
 	}
 
@@ -124,6 +127,18 @@ public class DefaultService implements Service {
 	public Etudiant findStudentByCNE(int cne) {
 		// TODO Auto-generated method stub
 		if( cne > 0 ) return persistence.findStudentByCNE(cne);
+		return null;
+	}
+
+	@Override
+	public Departement findDepartByName(String name) {
+		if( !name.isBlank()) return persistence.findDepartByName(name);
+		return null;
+	}
+
+	@Override
+	public Departement findDepartById(int id) {
+		if(id>0) return persistence.findDepartById(id);
 		return null;
 	}
 	
