@@ -1,6 +1,7 @@
 package com.sms.persistence;
 
 import java.util.List;
+import java.util.Map;
 
 import com.sms.beans.Departement;
 import com.sms.beans.Etudiant;
@@ -19,6 +20,7 @@ public interface Persistence {
 	void deleteMajor(int id);
 	boolean updateMajor(int id,Filiere newData);
 	
+	Map<String, List<Filiere>> getAllDepartementsWithMajors();
 	List<Departement> getAllDepartements();
 	boolean insertDepartement(Departement depart);
 	void deleteDepartement(int id);
