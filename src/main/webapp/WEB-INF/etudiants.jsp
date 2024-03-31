@@ -95,17 +95,7 @@
 
 			</div>
 		</section>
-		<!-- <div class="insert-form">
-            <h2>Ajouter un Etudiant</h2>
-            <form action="">
-                <input type="text" required name="cne" placeholder="CNE">
-                <input type="text" required name="nom" placeholder="Nom">
-                <input type="text" required name="prenom" placeholder="Prénom">
-                <input type="text" required name="filiere" placeholder="Filière">
-                <input type="text" required name="tel" placeholder="Téléphone">
-                <button type="submit">Ajouter</button>
-            </form>
-        </div> -->
+		
 
 	</main>
 	
