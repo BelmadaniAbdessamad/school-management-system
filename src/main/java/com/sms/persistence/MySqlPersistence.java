@@ -209,13 +209,42 @@ public class MySqlPersistence implements Persistence {
 
 	@Override
 	public boolean insertDepartement(Departement depart) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			Connection conn = getConnection();
+			PreparedStatement pstmt = conn
+					.prepareStatement("INSERT INTO departements (departement) VALUES (?)");
+			
+			pstmt.setString(1, depart.getNom());
+
+			int rowsAffected = pstmt.executeUpdate(); // Use executeUpdate for INSERT, UPDATE, DELETE queries
+
+			pstmt.close();
+			conn.close();
+
+			return rowsAffected > 0;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override
-	public void deleteDepartement(int id) {
-		// TODO Auto-generated method stub
+	public boolean deleteDepartement(int id) {
+		try {
+			Connection conn = getConnection();
+			PreparedStatement pstmt = conn.prepareStatement("DELETE FROM departements WHERE id = ?;");
+			pstmt.setInt(1, id);
+			int rowsAffected = pstmt.executeUpdate(); // Use executeUpdate for INSERT, UPDATE, DELETE queries
+			pstmt.close();
+			conn.close();
+
+			return rowsAffected > 0;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return false;
+		}
 
 	}
 
@@ -227,16 +256,18 @@ public class MySqlPersistence implements Persistence {
 
 	public static void main(String[] args) {
 		MySqlPersistence test = new MySqlPersistence();
-		/*
-		 * Etudiant et = new Etudiant(); et.setNom("Bou3boula");
-		 * et.setPrenom("Debloum"); et.setCne(2020); et.setTel("20202020");
-		 */
+		
+		/*  Departement et = new Departement();
+		  et.setNom("Science Humaines");
+		  
+		 
 
-		// if(test.insertStudent(et)) System.out.println("Student Insrted
-		// Successfully");
-		/*
-		 * if (test.deleteStudent(17)) { System.out.println("deleted succesfully"); }
-		 */
+		 //if(test.insertDepartement(et)) System.out.println("Student Insrted Successfully");
+		
+		*/
+		
+		  //if (test.deleteDepartement(5)) { System.out.println("deleted succesfully"); }
+		 
 		List<Departement> ets = test.getAllDepartements();
 		  
 		  for (Departement ett : ets) { System.out.println(ett.toString()); }
