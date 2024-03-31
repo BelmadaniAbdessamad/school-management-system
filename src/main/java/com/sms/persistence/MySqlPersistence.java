@@ -90,7 +90,7 @@ public class MySqlPersistence implements Persistence {
 			pstmt.setInt(1, et.getCne());
 			pstmt.setString(2, et.getNom());
 			pstmt.setString(3, et.getPrenom());
-			pstmt.setInt(4, 1);
+			pstmt.setInt(4, et.getFiliereId());
 			pstmt.setString(5, et.getTel());
 
 			int rowsAffected = pstmt.executeUpdate(); // Use executeUpdate for INSERT, UPDATE, DELETE queries
