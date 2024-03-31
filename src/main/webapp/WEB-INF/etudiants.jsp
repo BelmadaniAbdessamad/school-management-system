@@ -38,7 +38,9 @@
 		</div>
 
 		<section class="student-section">
-			<h2 class="table-title">Liste des Etudiants</h2>
+		  <% if(request.getAttribute("messages") != null) out.print("<h4 class=\"msg-box\"><b><i>"+request.getAttribute("messages")+"</i></b></h4>"); %>
+	
+			<h2 class="table-title">Liste des Etudiants  - <a href="insertEtudiant.jsp">Insérer un Etudiant</a></h2>
 
 			<%
 			List<Etudiant> etudiants = (List<Etudiant>) request.getAttribute("etudiants");
