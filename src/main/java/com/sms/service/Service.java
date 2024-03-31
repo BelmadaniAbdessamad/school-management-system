@@ -1,6 +1,7 @@
 package com.sms.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.sms.beans.Departement;
 import com.sms.beans.Etudiant;
@@ -20,6 +21,7 @@ public interface Service {
 	boolean updateMajor(int id,Filiere newData);
 	
 	List<Departement> getAllDepartements();
+	Map<String, List<Filiere>> getAllDepartementsWithMajors();
 	boolean insertDepartement(Departement depart);
 	void deleteDepartement(int id);
 	boolean updateDepartement(int id,Departement newData);
