@@ -18,13 +18,15 @@ public interface Service {
 	
 	List<Filiere> getAllMajors();
 	boolean insertMajor(Filiere fl);
-	void deleteMajor(int id);
+	boolean deleteMajor(int id);
 	boolean updateMajor(int id,Filiere newData);
 	
 	List<Departement> getAllDepartements();
 	Map<String, List<Filiere>> getAllDepartementsWithMajors();
 	boolean insertDepartement(Departement depart);
-	void deleteDepartement(int id);
+	boolean deleteDepartement(int id);
 	boolean updateDepartement(int id,Departement newData);
+	Departement findDepartByName(String name);
+	Departement findDepartById(int id);
 
 }
