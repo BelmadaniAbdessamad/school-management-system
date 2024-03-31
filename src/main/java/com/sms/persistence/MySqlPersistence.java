@@ -234,13 +234,25 @@ public class MySqlPersistence implements Persistence {
 
 		// if(test.insertStudent(et)) System.out.println("Student Insrted
 		// Successfully");
-		if (test.deleteStudent(17)) {
-			System.out.println("deleted succesfully");
-		}
-		List<Etudiant> ets = test.getAllStudents();
+		/*
+		 * if (test.deleteStudent(17)) { System.out.println("deleted succesfully"); }
+		 * List<Etudiant> ets = test.getAllStudents();
+		 * 
+		 * for (Etudiant ett : ets) { System.out.println(ett.toString()); }
+		 */
 
-		for (Etudiant ett : ets) {
-			System.out.println(ett.toString());
+		// Print the map contents (for testing)
+		for (Map.Entry<String, List<Filiere>> entry : test.getAllDepartements().entrySet()) {
+		    String department = entry.getKey();
+		    List<Filiere> majors = entry.getValue();
+
+		    // Print department information
+		    System.out.println("Department: " + department);
+
+		    // Print majors for the department
+		    for (Filiere major : majors) {
+		        System.out.println("- Major: " + major.getNom() + ", ID: " + major.getId());
+		    }
 		}
 
 		/*
