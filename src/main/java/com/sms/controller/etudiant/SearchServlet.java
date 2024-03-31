@@ -30,8 +30,17 @@ public class SearchServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String fullname = request.getParameter("search");
-		Etudiant foundStudent = DefaultService.getServiceInstance().findStudentByFullName(fullname);
+		String searchQuery = request.getParameter("search");
+		Etudiant foundStudent =null;
+		try {
+			int searchQueryCne = Integer.parseInt(searchQuery);
+			foundStudent = DefaultService.getServiceInstance().findStudentByCNE(searchQueryCne);
+		} catch (Exception e) {
+			// TODO: handle exception
+			 foundStudent = DefaultService.getServiceInstance().findStudentByFullName(searchQuery);
+		}
+		
+		
 		if(foundStudent != null) {
 			request.setAttribute("found-student-id", foundStudent.getCne());
 		}else {
