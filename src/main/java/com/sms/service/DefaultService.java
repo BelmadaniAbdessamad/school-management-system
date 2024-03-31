@@ -113,6 +113,19 @@ public class DefaultService implements Service {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public Map<String, List<Filiere>> getAllDepartementsWithMajors() {
+		// TODO Auto-generated method stub
+		return persistence.getAllDepartementsWithMajors();
+	}
+
+	@Override
+	public Etudiant findStudentByCNE(int cne) {
+		// TODO Auto-generated method stub
+		if( cne > 0 ) return persistence.findStudentByCNE(cne);
+		return null;
+	}
 	
 	 
 
