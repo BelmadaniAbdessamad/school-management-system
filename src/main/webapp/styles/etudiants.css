@@ -50,26 +50,7 @@ th {
 	color: #fff;
 }
 
-/* Form styles */
-/* .insert-form {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
 
-        .insert-form input[type="text"], 
-        .insert-form button {
-            padding: 10px;
-            margin-right: 10px;
-            border-radius: 5px;
-        }
-
-        .insert-form button {
-            background-color: #28a745;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-        } */
 .found {
 	color: white;
 	background-color: #28a745; /* Background color */
