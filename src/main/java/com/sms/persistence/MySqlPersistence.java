@@ -236,10 +236,11 @@ public class MySqlPersistence implements Persistence {
 		// Successfully");
 		/*
 		 * if (test.deleteStudent(17)) { System.out.println("deleted succesfully"); }
-		 * List<Etudiant> ets = test.getAllStudents();
-		 * 
-		 * for (Etudiant ett : ets) { System.out.println(ett.toString()); }
 		 */
+		List<Departement> ets = test.getAllDepartements();
+		  
+		  for (Departement ett : ets) { System.out.println(ett.toString()); }
+		/*
 
 		// Print the map contents (for testing)
 		for (Map.Entry<String, List<Filiere>> entry : test.getAllDepartements().entrySet()) {
