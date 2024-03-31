@@ -146,7 +146,7 @@ public class MySqlPersistence implements Persistence {
 	}
 
 	@Override
-	public void deleteMajor(int id) {
+	public boolean deleteMajor(int id) {
 		// TODO Auto-generated method stub
 
 	}
