@@ -30,7 +30,7 @@
 		<div class="search-container">
 			<form action="find-student" >
 				<input type="text" required name="search"
-					placeholder="Tapez un nom ...">
+					placeholder="Tapez un nom complet ou cne ...">
 				<button type="submit">Chercher</button>
 			</form>
 	<% Integer foudStudentId = (Integer) request.getAttribute("found-student-id"); %>
