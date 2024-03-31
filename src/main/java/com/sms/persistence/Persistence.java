@@ -18,13 +18,13 @@ public interface Persistence {
 	
 	List<Filiere> getAllMajors();
 	boolean insertMajor(Filiere fl);
-	void deleteMajor(int id);
+	boolean deleteMajor(int id);
 	boolean updateMajor(int id,Filiere newData);
 	
 	Map<String, List<Filiere>> getAllDepartementsWithMajors();
 	List<Departement> getAllDepartements();
 	boolean insertDepartement(Departement depart);
-	void deleteDepartement(int id);
+	boolean deleteDepartement(int id);
 	boolean updateDepartement(int id,Departement newData);
 	
 
