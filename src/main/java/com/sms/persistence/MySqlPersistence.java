@@ -345,4 +345,47 @@ public class MySqlPersistence implements Persistence {
 		return null;
 	}
 
+	@Override
+	public Filiere findMajorByName(String name) {
+		
+         for (Filiere major : getAllMajors()) {
+			
+			if (major.getNom().equalsIgnoreCase(name) )
+				return major;
+		}
+		return null;
+	}
+
+	@Override
+	public Filiere findMajorById(int id) {
+		
+    for (Filiere major : getAllMajors()) {
+			
+			if (major.getId()==id  )
+				return major;
+		}
+		return null;
+	}
+
+	@Override
+	public Departement findDepartByName(String name) {
+		
+		for (Departement depart : getAllDepartements()) {
+			
+			if (depart.getNom().equalsIgnoreCase(name) )
+				return depart;
+		}
+		return null;
+	}
+
+	@Override
+	public Departement findDepartById(int id) {
+        for (Departement depart : getAllDepartements()) {
+			
+			if (depart.getId()==id )
+				return depart;
+		}
+		return null;
+	}
+
 }
