@@ -7,7 +7,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.sms.beans.Departement;
 import com.sms.beans.Etudiant;
@@ -32,8 +35,10 @@ public class MySqlPersistence implements Persistence {
 
 			if (conn != null) {
 				Statement stmt = conn.createStatement();
-				ResultSet resultat = stmt.executeQuery("SELECT etudiants.id,cne,nom,prenom,tel,filieres.filiere,departements.departement " + ""
-						+ "  FROM etudiants,filieres,departements" + " WHERE etudiants.filiere=filieres.id AND filieres.departement = departements.id ;");
+				ResultSet resultat = stmt.executeQuery(
+						"SELECT etudiants.id,cne,nom,prenom,tel,filieres.filiere,departements.departement " + ""
+								+ "  FROM etudiants,filieres,departements"
+								+ " WHERE etudiants.filiere=filieres.id AND filieres.departement = departements.id ;");
 
 				while (resultat.next()) {
 					Etudiant et = new Etudiant();
@@ -153,9 +158,53 @@ public class MySqlPersistence implements Persistence {
 	}
 
 	@Override
-	public List<Departement> getAllDepartements() {
-		// TODO Auto-generated method stub
-		return null;
+	public Map<String, List<Filiere>> getAllDepartementsWithMajors() {
+
+		Map<String, List<Filiere>> departmentMajorMap = new LinkedHashMap<>();
+		String query = "SELECT d.id,d.departement, f.id, f.filiere " + "FROM departements d "
+				+ "LEFT JOIN filieres f ON d.id =f.departement " + "ORDER BY d.id";
+		try {
+			Connection conn = getConnection();
+			if (conn != null) {
+				PreparedStatement statement = conn.prepareStatement(query);
+				ResultSet resultSet = statement.executeQuery();
+				String currentDepartment = null;
+				List<Filiere> majors = new ArrayList<>();
+
+				while (resultSet.next()) {
+					String departmentName = resultSet.getString("departement");
+					//System.out.println("department :" + departmentName);
+					int majorId = resultSet.getInt("f.id");
+					String majorName = resultSet.getString("filiere");
+					//System.out.println("filiere :" + majorName);
+
+					// Check if it's a new department
+					if (currentDepartment == null || !currentDepartment.equals(departmentName)) {
+						if (currentDepartment != null) {
+							departmentMajorMap.put(currentDepartment, majors); // Add to map
+						}
+
+						currentDepartment = new String(departmentName);
+						majors = new ArrayList<>();
+						// Reset majors list for the new department
+					}
+
+					// Add major to the majors list
+					majors.add(new Filiere(majorName, majorId));
+				}
+
+				// Add the last department and its majors to the map
+				if (currentDepartment != null) {
+					departmentMajorMap.put(currentDepartment, majors);
+				}
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return departmentMajorMap;
+
 	}
 
 	@Override
