@@ -98,7 +98,10 @@ public class DefaultService implements Service {
 
 	@Override
 	public List<Departement> getAllDepartements() {
-		// TODO Auto-generated method stub
+		List<Departement> departements = persistence.getAllDepartements();
+		if(departements != null && departements.size() >=1) {
+			return departements;
+		}
 		return null;
 	}
 
