@@ -21,8 +21,8 @@
 		</h3>
 		<ul>
 			<li class="active-tab"><a href="get-students">Etudiants</a></li>
-			<li><a href="departments.html">Departments</a></li>
-			<li><a href="filiere.html">Filières</a></li>
+			<li><a href="get-departs">Departments</a></li>
+			<li><a href="get-majors">Filières</a></li>
 		</ul>
 	</header>
 	<main class="container">
