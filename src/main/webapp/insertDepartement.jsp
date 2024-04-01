@@ -16,7 +16,7 @@
         <ul>
             <li><a href="get-students">Etudiants</a></li>
             <li class="active-tab"><a href="get-departs">Departments</a></li>
-            <li><a href="filiere.html">Filières</a></li>
+            <li><a href="get-majors">Filières</a></li>
         </ul>
     </header>
     
