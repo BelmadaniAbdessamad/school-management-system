@@ -7,9 +7,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import com.sms.service.DefaultService;
+
 /**
  * Servlet implementation class DeleteDepartmentServlet
  */
+@WebServlet("/delete-depart")
 public class DeleteDepartmentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -26,7 +29,23 @@ public class DeleteDepartmentServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+				try {
+					int  toDeleteId = Integer.parseInt(request.getParameter("toDeleteId"));
+					String messages = null;
+					if(DefaultService.getServiceInstance().deleteDepartement(toDeleteId)) {
+						messages = "Département est supprimé avec succes";
+					}else {
+						
+						messages = "Il y'a une erreur interne , essaie encors une fois";
+					}
+					
+					request.setAttribute("messages",messages);
+					request.getRequestDispatcher("get-departs").forward(request, response);
+					
+					
+				}catch (Exception e) {
+					e.printStackTrace();
+				}
 	}
 
 	/**
