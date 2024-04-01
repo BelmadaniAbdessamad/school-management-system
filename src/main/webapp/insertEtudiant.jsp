@@ -11,6 +11,7 @@
 <title>Inserer un étudiant</title>
 <link rel="stylesheet" href="styles/insertForm.css">
 <link rel="stylesheet" href="styles/index.css">
+<link rel="stylesheet" href="styles/main.css">
 
 </head>
 <body>
@@ -26,7 +27,7 @@
 		</ul>
 	</header>
     
-	<main class=" insert-form">
+	<main class="container insert-form">
 	     <% if(request.getAttribute("messages") != null) out.print("<h4><b><i>"+request.getAttribute("messages")+"</i></b></h4>"); %>
 		<h2>Ajouter un Etudiant</h2>
 		<form action="add-student" method="post" >

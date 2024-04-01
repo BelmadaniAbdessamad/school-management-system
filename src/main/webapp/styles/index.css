@@ -1,59 +1,73 @@
-*{
-    margin: 0;
-    padding: 0;
-}
-body{
-    background-color: #f0f2f5;
+* {
+	margin: 0;
+	padding: 0;
 }
 
-header{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding:.7rem;
-    background-color: white;
-    box-shadow: 0 0 .2rem 0 black ;
+body {
+	background-color: #f0f2f5;
 }
-header h3{
-    width: 100px;
-    font-style: italic;
-    margin-left: 3rem;
-    cursor: pointer;
-    
-    
-   
+
+header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: .7rem;
+	box-shadow: 0 0 .2rem 0 black;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-color: #333; /* Background color for the header */
+	color: #fff !important; /* Text color for the header */
+	z-index: 1000; /* Ensure the header is on top of other content */
 }
-header ul{
-    list-style: none;
-    display: flex;
-    margin: 0rem 10rem 0rem 0rem; 
+
+header h3 {
+	
+	font-style: italic;
+	margin-left: 3rem;
+	cursor: pointer;
 }
-header li{
-    padding: .5rem;
-    color: black;
-    cursor: pointer;
-    transition: .7s;
-    border-radius: .2rem;
+
+header ul {
+	list-style: none;
+	display: flex;
+	margin: 0rem 10rem 0rem 0rem;
 }
-header li:hover{
-    background-color: gainsboro;
+
+header li {
+	padding: .5rem;
+	color: black;
+	cursor: pointer;
+	transition: .7s;
+	border-radius: .2rem;
+	transition:.6s;
 }
-header li a{
-    text-decoration: none;
-    color: inherit;
+
+header li:hover {
+	background-color: grey;
+
+	cursor: pointer;
 }
-.active-tab{
-    border-bottom: greenyellow 2px solid;
+
+header  a {
+	text-decoration: none;
+	color: white;
+	padding:5px;
+}
+
+.active-tab {
+	border-bottom: greenyellow 2px solid;
 }
 
 /* main css*/
-
-main{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 4rem;
+main {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	
 }
-.msg-box{
+
+.msg-box {
 	text-align: center;
 }
