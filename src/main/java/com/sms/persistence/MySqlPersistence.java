@@ -38,7 +38,7 @@ public class MySqlPersistence implements Persistence {
 				ResultSet resultat = stmt.executeQuery(
 						"SELECT etudiants.id,cne,nom,prenom,tel,filieres.filiere,departements.departement " + ""
 								+ "  FROM etudiants,filieres,departements"
-								+ " WHERE etudiants.filiere=filieres.id AND filieres.departement = departements.id ;");
+								+ " WHERE etudiants.filiere=filieres.id AND filieres.departement = departements.id ORDER BY filieres.filiere;");
 
 				while (resultat.next()) {
 					Etudiant et = new Etudiant();
@@ -151,11 +151,11 @@ public class MySqlPersistence implements Persistence {
 
 			if (conn != null) {
 				Statement stmt = conn.createStatement();
-				ResultSet resultat = stmt.executeQuery("SELECT m.id, m.filiere ,"
+				ResultSet resultat = stmt.executeQuery("SELECT m.id, m.filiere ,d.departement,"
 						+ "                    COUNT(DISTINCT s.id) AS student_count "
-						+ "                    FROM filieres m "
+						+ "                    FROM filieres m LEFT JOIN departements d ON m.departement = d.id "
 						+ "                    LEFT JOIN etudiants s ON m.id = s.filiere "
-						+ "                   GROUP BY m.id, m.filiere;");
+						+ "                   GROUP BY m.id, m.filiere, m.departement;");
 
 				while (resultat.next()) {
 					Filiere major = new Filiere();
@@ -163,6 +163,10 @@ public class MySqlPersistence implements Persistence {
 					major.setNom(resultat.getString("filiere"));
 					major.setEtudiantCount(resultat.getInt("student_count"));
 					
+					Departement depart = new Departement();
+					depart.setNom(resultat.getString("departement"));
+					
+					major.setDepartement(depart);
 					filieres.add(major);
 				}
 				stmt.close();
