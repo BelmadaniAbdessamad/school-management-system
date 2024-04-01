@@ -144,19 +144,81 @@ public class MySqlPersistence implements Persistence {
 
 	@Override
 	public List<Filiere> getAllMajors() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Filiere> filieres = new ArrayList<Filiere>();
+
+		try {
+			Connection conn = this.getConnection();
+
+			if (conn != null) {
+				Statement stmt = conn.createStatement();
+				ResultSet resultat = stmt.executeQuery("SELECT m.id, m.filiere ,"
+						+ "                    COUNT(DISTINCT s.id) AS student_count "
+						+ "                    FROM filieres m "
+						+ "                    LEFT JOIN etudiants s ON m.id = s.filiere "
+						+ "                   GROUP BY m.id, m.filiere;");
+
+				while (resultat.next()) {
+					Filiere major = new Filiere();
+					major.setId(resultat.getInt("id"));
+					major.setNom(resultat.getString("filiere"));
+					major.setEtudiantCount(resultat.getInt("student_count"));
+					
+					filieres.add(major);
+				}
+				stmt.close();
+				resultat.close();
+			}
+
+			conn.close();
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+
+		return filieres;
 	}
 
 	@Override
 	public boolean insertMajor(Filiere fl) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			Connection conn = getConnection();
+			PreparedStatement pstmt = conn
+					.prepareStatement("INSERT INTO filieres (filiere,departement) VALUES (?,?)");
+			
+			pstmt.setString(1, fl.getNom());
+			pstmt.setInt(2, fl.getDepartement().getId());
+
+			int rowsAffected = pstmt.executeUpdate(); // Use executeUpdate for INSERT, UPDATE, DELETE queries
+
+			pstmt.close();
+			conn.close();
+
+			return rowsAffected > 0;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override
 	public boolean deleteMajor(int id) {
-		// TODO Auto-generated method stub
+		
+		try {
+			Connection conn = getConnection();
+			PreparedStatement pstmt = conn.prepareStatement("DELETE FROM filieres WHERE id = ?;");
+			pstmt.setInt(1, id);
+			int rowsAffected = pstmt.executeUpdate(); // Use executeUpdate for INSERT, UPDATE, DELETE queries
+			pstmt.close();
+			conn.close();
+
+			return rowsAffected > 0;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return false;
+		}
 
 	}
 
@@ -266,20 +328,23 @@ public class MySqlPersistence implements Persistence {
 	public static void main(String[] args) {
 		MySqlPersistence test = new MySqlPersistence();
 		
-		/*  Departement et = new Departement();
-		  et.setNom("Science Humaines");
+		/*  Filiere et = new Filiere();
+		  et.setNom("Test");
+		  Departement dp =new Departement();
+		  dp.setId(1);
+		  et.setDepartement(dp);
 		  
 		 
 
-		 //if(test.insertDepartement(et)) System.out.println("Student Insrted Successfully");
+		// if(test.insertMajor(et)) System.out.println("Major Insrted Successfully");
 		
-		*/
 		
-		  //if (test.deleteDepartement(5)) { System.out.println("deleted succesfully"); }
+		
+		  if (test.deleteMajor(9)) { System.out.println("deleted succesfully"); }
 		 
-		List<Departement> ets = test.getAllDepartements();
+		List<Filiere> ets = test.getAllMajors();
 		  
-		  for (Departement ett : ets) { System.out.println(ett.toString()); }
+		  for (Filiere ett : ets) { System.out.println(ett.toString()); }
 		/*
 
 		// Print the map contents (for testing)
