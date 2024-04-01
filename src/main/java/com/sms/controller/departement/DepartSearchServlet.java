@@ -7,9 +7,14 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import com.sms.beans.Departement;
+import com.sms.beans.Etudiant;
+import com.sms.service.DefaultService;
+
 /**
  * Servlet implementation class DepartSearchServlet
  */
+@WebServlet("/find-depart")
 public class DepartSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -26,7 +31,23 @@ public class DepartSearchServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String searchQuery = request.getParameter("search");
+		Departement foundDepart =null;
+		try {
+			int searchQueryId = Integer.parseInt(searchQuery);
+			foundDepart = DefaultService.getServiceInstance().findDepartById(searchQueryId);
+		} catch (Exception e) {
+			// TODO: handle exception
+			foundDepart = DefaultService.getServiceInstance().findDepartByName(searchQuery);
+		}
+		
+		
+		if(foundDepart != null) {
+			request.setAttribute("found-depart-id", foundDepart.getId());
+		}else {
+			request.setAttribute("found-depart-id", -1);
+		}
+		request.getRequestDispatcher("get-departs").forward(request, response);
 	}
 
 	/**
