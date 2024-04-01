@@ -75,8 +75,8 @@
 							<td><%=t.getCne()%></td>
 							<td><%=t.getNom()%></td>
 							<td><%=t.getPrenom()%></td>
-							<td><%=t.getFiliere()%></td>
-							<td><%=t.getDepartement()%></td>
+							<td><%=t.getFiliere().getNom()%></td>
+							<td><%=t.getFiliere().getDepartement().getNom()%></td>
 							<td><%=t.getTel()%></td>
 							<td>
 							<form action="delete-student" method="post"><input value="<%=t.getId()%>" name="toDeleteId" required type="hidden">
