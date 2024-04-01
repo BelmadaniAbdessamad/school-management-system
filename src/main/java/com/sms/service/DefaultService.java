@@ -150,6 +150,18 @@ public class DefaultService implements Service {
 		if(id>0) return persistence.findDepartById(id);
 		return null;
 	}
+
+	@Override
+	public Filiere findMajorByName(String name) {
+		if( !name.isBlank()) return persistence.findMajorByName(name);
+		return null;
+	}
+
+	@Override
+	public Filiere findMajorById(int id) {
+		if(id>0) return persistence.findMajorById(id);
+		return null;
+	}
 	
 	 
 
