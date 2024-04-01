@@ -5,11 +5,10 @@ public class Etudiant {
 	private int id;
 	private String nom;
 	private String prenom;
-	private String filiere;
+	private Filiere filiere;
 	private String tel;
 	private int cne;
-	private String departement;
-	private int filiereId;
+	
 	
 	public Etudiant() {
 		
@@ -23,15 +22,7 @@ public class Etudiant {
 		this.tel = tel;
 		this.cne = cne;
 	}
-	public Etudiant(int id, String nom, String prenom, String filiere, String tel, int cne) {
-		super();
-		this.id = id;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.filiere = filiere;
-		this.tel = tel;
-		this.cne = cne;
-	}
+	
 	public int getId() {
 		return id;
 	}
@@ -50,12 +41,7 @@ public class Etudiant {
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
-	public String getFiliere() {
-		return filiere;
-	}
-	public void setFiliere(String filiere) {
-		this.filiere = filiere;
-	}
+	
 	public String getTel() {
 		return tel;
 	}
@@ -71,38 +57,28 @@ public class Etudiant {
 
 	
 	
-	public String getDepartement() {
-		return departement;
+	public Filiere getFiliere() {
+		return filiere;
 	}
 
-	public void setDepartement(String departement) {
-		this.departement = departement;
-	}
-
-	
-	
-
-	public int getFiliereId() {
-		return filiereId;
-	}
-
-	public void setFiliereId(int filiereId) {
-		this.filiereId = filiereId;
-	}
-
-	@Override
-	public String toString() {
-		return "Etudiant [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", filiere=" + filiere + ", tel=" + tel
-				+ ", cne=" + cne + ", departement=" + departement + "]";
+	public void setFiliere(Filiere filiere) {
+		this.filiere = filiere;
 	}
 
 	public boolean attributsAreValid() {
 		// TODO Auto-generated method stub
-		if( this.cne < 1 || this.nom.isBlank() || this.prenom.isBlank() || this.filiereId<1 || this.tel.isBlank())
+		if( this.cne < 1 || this.nom.isBlank() || this.prenom.isBlank() || this.filiere.getId()<1 || this.tel.isBlank())
 			return false;
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "Etudiant [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", filiere=" + filiere.getNom() + ", tel=" + tel
+				+ ", cne=" + cne + "]";
+	}
+
+	
 	
 	
 	
