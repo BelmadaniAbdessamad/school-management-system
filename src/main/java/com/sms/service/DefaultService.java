@@ -68,19 +68,25 @@ public class DefaultService implements Service {
 
 	@Override
 	public List<Filiere> getAllMajors() {
-		// TODO Auto-generated method stub
+		List<Filiere> filieres = persistence.getAllMajors();
+		if(filieres != null && filieres.size() >=1) {
+			return filieres;
+		}
 		return null;
 	}
 
 	@Override
 	public boolean insertMajor(Filiere fl) {
-		// TODO Auto-generated method stub
+		if(fl != null && !fl.getNom().isBlank() && fl.getDepartement().getId()>0) {
+			return persistence.insertMajor(fl);
+		}
 		return false;
 	}
 
 	@Override
 	public boolean deleteMajor(int id) {
-		// TODO Auto-generated method stub
+		
+		return persistence.deleteMajor(id);
 		
 	}
 
