@@ -5,6 +5,7 @@ public class Filiere {
 	private String nom;
 	private Departement departement;
 	private int id;
+	private int etudiantCount;
 	
 	
 	public Filiere() {
@@ -42,6 +43,20 @@ public class Filiere {
 	public void setId(int id) {
 		this.id = id;
 	}
+
+	public int getEtudiantCount() {
+		return etudiantCount;
+	}
+
+	public void setEtudiantCount(int etudiantCount) {
+		this.etudiantCount = etudiantCount;
+	}
+
+	@Override
+	public String toString() {
+		return "Filiere [nom=" + nom + ", id=" + id + ", etudiantCount=" + etudiantCount + "]";
+	}
+	
 	
 	
 
