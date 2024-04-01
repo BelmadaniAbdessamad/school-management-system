@@ -20,6 +20,8 @@ public interface Service {
 	boolean insertMajor(Filiere fl);
 	boolean deleteMajor(int id);
 	boolean updateMajor(int id,Filiere newData);
+	Filiere findMajorByName(String name);
+	Filiere findMajorById(int id);
 	
 	List<Departement> getAllDepartements();
 	Map<String, List<Filiere>> getAllDepartementsWithMajors();
