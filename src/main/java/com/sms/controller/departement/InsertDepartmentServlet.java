@@ -7,9 +7,14 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import com.sms.beans.Departement;
+import com.sms.beans.Etudiant;
+import com.sms.service.DefaultService;
+
 /**
  * Servlet implementation class InsertDepartment
  */
+@WebServlet("/add-depart")
 public class InsertDepartmentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -26,7 +31,33 @@ public class InsertDepartmentServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String nom = request.getParameter("nom");
+		
+		
+		String messages = null;
+		
+		
+	
+		if(nom.isBlank()) {
+			messages = "le nom est obligatoire";
+			request.setAttribute("messages",messages);
+			request.getRequestDispatcher("insertDepartement.jsp").forward(request, response);
+			return;
+		}
+		
+		// créer le départment à insérer
+		Departement depart= new Departement();
+		
+		depart.setNom(nom);
+		
+		
+		if(DefaultService.getServiceInstance().insertDepartement(depart)) {
+			messages = "Département est inséré avec succes";
+		}else {
+			messages = "Il y'a une erreur interne , essaie encors une fois";
+		}
+		request.setAttribute("messages",messages);
+		request.getRequestDispatcher("insertDepartement.jsp").forward(request, response);
 	}
 
 	/**
