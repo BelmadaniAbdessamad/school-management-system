@@ -47,8 +47,17 @@ public class MySqlPersistence implements Persistence {
 					et.setPrenom(resultat.getString("prenom"));
 					et.setCne(resultat.getInt("cne"));
 					et.setTel(resultat.getString("tel"));
-					et.setFiliere(resultat.getString("filiere"));
-					et.setDepartement(resultat.getString("departement"));
+					
+					Filiere fl = new Filiere();
+					fl.setNom(resultat.getString("filiere"));
+					
+					Departement depart = new Departement();
+					depart.setNom(resultat.getString("departement"));
+					
+					fl.setDepartement(depart);
+					
+					et.setFiliere(fl);
+					
 					etudiants.add(et);
 				}
 				stmt.close();
@@ -90,7 +99,7 @@ public class MySqlPersistence implements Persistence {
 			pstmt.setInt(1, et.getCne());
 			pstmt.setString(2, et.getNom());
 			pstmt.setString(3, et.getPrenom());
-			pstmt.setInt(4, et.getFiliereId());
+			pstmt.setInt(4, et.getFiliere().getId());
 			pstmt.setString(5, et.getTel());
 
 			int rowsAffected = pstmt.executeUpdate(); // Use executeUpdate for INSERT, UPDATE, DELETE queries
