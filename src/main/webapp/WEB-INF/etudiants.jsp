@@ -45,7 +45,7 @@
 
 
            <form class="filters" action="get-students">
-                  <span>Order by : </span>
+                  <span>ORDER BY : </span>
                  <%
                      // Check if the order parameter exists in the request
                 String[] appliedFilters = (String [])request.getAttribute("filters");
@@ -55,7 +55,7 @@
                  <input type="checkbox" name="order" value="cne"
                   <% if (appliedFilters != null && Arrays.asList(appliedFilters).contains("cne")) out.print("checked"); %>
                  >
-                   <label>cne</label>
+                   <label>Cne</label>
                  </div>
                   
                    <div>
@@ -63,7 +63,7 @@
                    <% if (appliedFilters != null && Arrays.asList(appliedFilters).contains("nom")) out.print("checked"); %>
                
                    >
-                   <label>nom</label>
+                   <label>Nom</label>
                    </div>
                    
                    <div>
@@ -71,7 +71,7 @@
                    
                    <% if (appliedFilters != null && Arrays.asList(appliedFilters).contains("prenom")) out.print("checked"); %>
                >
-                   <label>prénom</label>
+                   <label>Prénom</label>
                    </div>
                    
                    <div>
@@ -79,7 +79,7 @@
                     <% if (appliedFilters != null && Arrays.asList(appliedFilters).contains("major")) out.print("checked"); %>
                
                     >
-                   <label>filière</label>
+                   <label>Filière</label>
                    </div>
                   
                    <div>
@@ -87,7 +87,7 @@
                      <% if (appliedFilters != null && Arrays.asList(appliedFilters).contains("depart")) out.print("checked"); %>
                
                      >
-                   <label>département</label>
+                   <label>Département</label>
                    </div>
                    
                   <div> <button type="submit">Appliquer</button></div>
