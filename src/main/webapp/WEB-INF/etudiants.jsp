@@ -1,3 +1,4 @@
+<%@page import="java.util.Arrays"%>
 <%@page import="com.sms.beans.Etudiant"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -42,6 +43,56 @@
 	
 			<h2 class="table-title">Liste des Etudiants  - <a href="insertEtudiant.jsp">Insérer un Etudiant</a></h2>
 
+
+           <form class="filters" action="get-students">
+                  <span>Order by : </span>
+                 <%
+                     // Check if the order parameter exists in the request
+                String[] appliedFilters = (String [])request.getAttribute("filters");
+                  %>
+                 
+                 <div>
+                 <input type="checkbox" name="order" value="cne"
+                  <% if (appliedFilters != null && Arrays.asList(appliedFilters).contains("cne")) out.print("checked"); %>
+                 >
+                   <label>cne</label>
+                 </div>
+                  
+                   <div>
+                   <input type="checkbox" name="order" value="nom"
+                   <% if (appliedFilters != null && Arrays.asList(appliedFilters).contains("nom")) out.print("checked"); %>
+               
+                   >
+                   <label>nom</label>
+                   </div>
+                   
+                   <div>
+                   <input type="checkbox" name="order" value="prenom"
+                   
+                   <% if (appliedFilters != null && Arrays.asList(appliedFilters).contains("prenom")) out.print("checked"); %>
+               >
+                   <label>prénom</label>
+                   </div>
+                   
+                   <div>
+                    <input type="checkbox" name="order" value="major"
+                    <% if (appliedFilters != null && Arrays.asList(appliedFilters).contains("major")) out.print("checked"); %>
+               
+                    >
+                   <label>filière</label>
+                   </div>
+                  
+                   <div>
+                     <input type="checkbox" name="order" value="depart"
+                     <% if (appliedFilters != null && Arrays.asList(appliedFilters).contains("depart")) out.print("checked"); %>
+               
+                     >
+                   <label>département</label>
+                   </div>
+                   
+                  <div> <button type="submit">Appliquer</button></div>
+                 
+            </form>
 			<%
 			List<Etudiant> etudiants = (List<Etudiant>) request.getAttribute("etudiants");
 			%>
