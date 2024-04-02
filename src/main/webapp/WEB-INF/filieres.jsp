@@ -12,6 +12,7 @@
 <title>Filières</title>
 <link rel="stylesheet" href="styles/index.css">
 <link rel="stylesheet" href="styles/main.css">
+<script  src="js/main.js"  ></script>
 </head>
 <body>
 	<header>
@@ -50,7 +51,7 @@
 					Filière</a>
 			</h2>
 			
-			 <form class="filters" action="get-majors" style="width: 36rem">
+			 <form class="filters" action="get-majors" style="width: 39rem">
                   <span>ORDER BY : </span>
                  <%
                      // Check if the order parameter exists in the request
@@ -93,6 +94,7 @@
                    </div>
                    
                   <div> <button type="submit">Appliquer</button></div>
+                     <a href="get-majors" style="text-decoration: none" ><button style="background-color: red <% if(appliedFilters == null || appliedFilters.length==0) out.print(";display :none\""); %>" type="button">Réinitialiser</button></a>
                  
             </form>
 
@@ -131,7 +133,7 @@
 							<td><%=fl.getEtudiantCount()+" Etudiants"%></td>
 
 							<td>
-								<form action="delete-major" method="post">
+								<form onsubmit="return confirmSubmit('cet filière')" action="delete-major" method="post">
 									<input value="<%=fl.getId()%>" name="toDeleteId" required
 										type="hidden">
 									<button type="submit">Delete</button>

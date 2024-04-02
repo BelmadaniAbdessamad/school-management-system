@@ -67,7 +67,7 @@ th {
 	 display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 30rem;
+    width: 32rem;
     height: 2rem;
     font-weight: 600;
     font-size: small;
@@ -81,7 +81,7 @@ th {
 	margin-right: .2rem;
 }
 
-.filters button{
+.filters button , table button{
 	padding: 2.5px 5px;
 	background-color: #007bff;
 	color: #fff;

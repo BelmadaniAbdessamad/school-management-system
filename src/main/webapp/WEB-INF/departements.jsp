@@ -12,6 +12,7 @@
     <title>Departments</title>
     <link rel="stylesheet" href="styles/index.css">
     <link rel="stylesheet" href="styles/main.css">
+    <script  src="js/main.js"  ></script>
 </head>
 <body>
     <header>
@@ -40,7 +41,7 @@
 	
 			<h2 class="table-title">Liste des Départements  - <a href="insertDepartement.jsp">Insérer un Départments</a></h2>
  
-           <form class="filters" action="get-departs" style="width: 47rem">
+           <form class="filters" action="get-departs" style="width: 49rem">
                   <span>ORDER BY : </span>
                  <%
                      // Check if the order parameter exists in the request
@@ -93,6 +94,7 @@
                    
                    
                   <div> <button type="submit">Appliquer</button></div>
+                     <a href="get-departs" style="text-decoration: none" ><button style="background-color: red <% if(appliedFilters == null || appliedFilters.length==0) out.print(";display :none\""); %>" type="button">Réinitialiser</button></a>
                  
             </form>  
 		 
@@ -129,7 +131,7 @@
 							<td><%=depart.getFiliereCount()+" Filières"%></td>
 							<td><%=depart.getEtudiantCount()+" Etudiants"%></td>
 							<td>
-							<form action="delete-depart" method="post"><input value="<%=depart.getId()%>" name="toDeleteId" required type="hidden">
+							<form onsubmit="return confirmSubmit('cet département')" action="delete-depart" method="post"><input value="<%=depart.getId()%>" name="toDeleteId" required type="hidden">
 							<button type="submit">Delete</button></form>
 							</td>
 

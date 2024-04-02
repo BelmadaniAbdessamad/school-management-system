@@ -1,7 +1,7 @@
 <%@page import="java.util.Arrays"%>
 <%@page import="com.sms.beans.Etudiant"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; utf-8"
 	pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -13,6 +13,7 @@
 <title>Etudiants</title>
 <link rel="stylesheet" href="styles/index.css">
 <link rel="stylesheet" href="styles/main.css">
+<script  src="js/main.js"  ></script>
 </head>
 <body>
 	<header>
@@ -91,6 +92,8 @@
                    </div>
                    
                   <div> <button type="submit">Appliquer</button></div>
+                 <a href="get-students" style="text-decoration: none" ><button style="background-color: red <% if(appliedFilters == null || appliedFilters.length==0) out.print(";display :none\""); %>" type="button">Réinitialiser</button></a>
+               
                  
             </form>
 			<%
@@ -130,7 +133,7 @@
 							<td><%=t.getFiliere().getDepartement().getNom()%></td>
 							<td><%=t.getTel()%></td>
 							<td>
-							<form action="delete-student" method="post"><input value="<%=t.getId()%>" name="toDeleteId" required type="hidden">
+							<form onsubmit="return confirmSubmit('cet étudiant')" action="delete-student" method="post"><input value="<%=t.getId()%>" name="toDeleteId" required type="hidden">
 							<button type="submit">Delete</button></form>
 							</td>
 
@@ -172,5 +175,12 @@
 				}
 			}
 			%>
+			
+			
+			
+			
+			
+  
+
 </body>
 </html>
