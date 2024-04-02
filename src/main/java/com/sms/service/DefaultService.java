@@ -28,9 +28,9 @@ public class DefaultService implements Service {
 	}
 
 	@Override
-	public List<Etudiant> getAllStudents() {
+	public List<Etudiant> getAllStudents(String[] filters) {
 		// TODO Auto-generated method stub
-		List<Etudiant> etudiants = persistence.getAllStudents();
+		List<Etudiant> etudiants = persistence.getAllStudents(filters);
 		if(etudiants != null && etudiants.size() >=1) {
 			return etudiants;
 		}
@@ -162,7 +162,9 @@ public class DefaultService implements Service {
 		if(id>0) return persistence.findMajorById(id);
 		return null;
 	}
-	
+
+
+
 	 
 
 }
