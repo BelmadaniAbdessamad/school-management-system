@@ -9,7 +9,7 @@ import com.sms.beans.Filiere;
 
 public interface Service {
 	
-	List<Etudiant> getAllStudents();
+	List<Etudiant> getAllStudents(String [] filters);
 	Etudiant findStudentByFullName(String fullName);
 	Etudiant findStudentByCNE(int cne);
 	boolean insertStudent(Etudiant et);
