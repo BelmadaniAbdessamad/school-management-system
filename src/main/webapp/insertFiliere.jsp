@@ -37,7 +37,7 @@
 				
 				<label for="filiere">Département :</label>
 				  <select id="departement" name="departement">
-				  <% List<Departement> departs =  DefaultService.getServiceInstance().getAllDepartements() ;%>
+				  <% List<Departement> departs =  DefaultService.getServiceInstance().getAllDepartements(null) ;%>
             	 <% 
             	 
             	 for (Departement depart :  departs) {
