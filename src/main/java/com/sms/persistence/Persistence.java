@@ -16,7 +16,7 @@ public interface Persistence {
 	boolean deleteStudent(int id);
 	boolean updateStudent(int id,Etudiant newData);
 	
-	List<Filiere> getAllMajors();
+	List<Filiere> getAllMajors(String [] filters);
 	boolean insertMajor(Filiere fl);
 	boolean deleteMajor(int id);
 	boolean updateMajor(int id,Filiere newData);
@@ -24,7 +24,7 @@ public interface Persistence {
 	Filiere findMajorById(int id);
 	
 	Map<String, List<Filiere>> getAllDepartementsWithMajors();
-	List<Departement> getAllDepartements();
+	List<Departement> getAllDepartements(String [] filters);
 	boolean insertDepartement(Departement depart);
 	boolean deleteDepartement(int id);
 	boolean updateDepartement(int id,Departement newData);

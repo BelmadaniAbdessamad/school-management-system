@@ -16,14 +16,14 @@ public interface Service {
 	boolean deleteStudent(int id);
 	boolean updateStudent(int id,Etudiant newData);
 	
-	List<Filiere> getAllMajors();
+	List<Filiere> getAllMajors(String [] filters);
 	boolean insertMajor(Filiere fl);
 	boolean deleteMajor(int id);
 	boolean updateMajor(int id,Filiere newData);
 	Filiere findMajorByName(String name);
 	Filiere findMajorById(int id);
 	
-	List<Departement> getAllDepartements();
+	List<Departement> getAllDepartements(String [] filters);
 	Map<String, List<Filiere>> getAllDepartementsWithMajors();
 	boolean insertDepartement(Departement depart);
 	boolean deleteDepartement(int id);
