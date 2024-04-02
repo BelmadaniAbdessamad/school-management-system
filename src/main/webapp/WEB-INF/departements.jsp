@@ -1,3 +1,4 @@
+<%@page import="java.util.Arrays"%>
 <%@page import="com.sms.beans.Departement"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
@@ -38,7 +39,63 @@
 		  <% if(request.getAttribute("messages") != null) out.print("<h4 class=\"msg-box\"><b><i>"+request.getAttribute("messages")+"</i></b></h4>"); %>
 	
 			<h2 class="table-title">Liste des Départements  - <a href="insertDepartement.jsp">Insérer un Départments</a></h2>
-
+ 
+           <form class="filters" action="get-departs" style="width: 47rem">
+                  <span>ORDER BY : </span>
+                 <%
+                     // Check if the order parameter exists in the request
+                String[] appliedFilters = (String [])request.getAttribute("filters");
+                  %>
+                 
+                 
+                   <div>
+                     <input type="checkbox" name="order" value="depart"
+                     <% if (appliedFilters != null && Arrays.asList(appliedFilters).contains("depart")) out.print("checked"); %>
+               
+                     >
+                   <label>Département</label>
+                   </div>
+                   
+                   <div>
+                   <input type="checkbox" name="order" value="student-count-asc"
+                   
+                   <% if (appliedFilters != null && Arrays.asList(appliedFilters).contains("student-count-asc")) out.print("checked"); %>
+               >
+                   <label>N d'etudiants ASC</label>
+                   </div>
+                   
+                    
+                   <div>
+                   <input type="checkbox" name="order" value="student-count-dec"
+                   
+                   <% if (appliedFilters != null && Arrays.asList(appliedFilters).contains("student-count-dec")) out.print("checked"); %>
+               >
+                   <label>N d'etudiants DEC</label>
+                   </div>
+                   
+                      <div>
+                   <input type="checkbox" name="order" value="major-count-asc"
+                   
+                   <% if (appliedFilters != null && Arrays.asList(appliedFilters).contains("major-count-asc")) out.print("checked"); %>
+               >
+                   <label>N Filières ASC</label>
+                   </div>
+                   
+                    
+                   <div>
+                   <input type="checkbox" name="order" value="major-count-dec"
+                   
+                   <% if (appliedFilters != null && Arrays.asList(appliedFilters).contains("major-count-dec")) out.print("checked"); %>
+               >
+                   <label>N Filières DEC</label>
+                   </div>
+                  
+                   
+                   
+                  <div> <button type="submit">Appliquer</button></div>
+                 
+            </form>  
+		 
 			<%
 			List<Departement> departements = (List<Departement>) request.getAttribute("departements");
 			%>

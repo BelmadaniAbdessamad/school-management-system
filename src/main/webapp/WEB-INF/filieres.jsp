@@ -1,3 +1,4 @@
+<%@page import="java.util.Arrays"%>
 <%@page import="com.sms.beans.Filiere"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
@@ -48,6 +49,52 @@
 				Liste des Filières - <a href="insertFiliere.jsp">Insérer un
 					Filière</a>
 			</h2>
+			
+			 <form class="filters" action="get-majors" style="width: 36rem">
+                  <span>ORDER BY : </span>
+                 <%
+                     // Check if the order parameter exists in the request
+                String[] appliedFilters = (String [])request.getAttribute("filters");
+                  %>
+                 
+                 
+                  <div>
+                    <input type="checkbox" name="order" value="major"
+                    <% if (appliedFilters != null && Arrays.asList(appliedFilters).contains("major")) out.print("checked"); %>
+               
+                    >
+                   <label>Filière</label>
+                   </div>
+                  
+                   
+                   <div>
+                   <input type="checkbox" name="order" value="student-count-asc"
+                   
+                   <% if (appliedFilters != null && Arrays.asList(appliedFilters).contains("student-count-asc")) out.print("checked"); %>
+               >
+                   <label>N d'etudiants ASC</label>
+                   </div>
+                   
+                    
+                   <div>
+                   <input type="checkbox" name="order" value="student-count-dec"
+                   
+                   <% if (appliedFilters != null && Arrays.asList(appliedFilters).contains("student-count-dec")) out.print("checked"); %>
+               >
+                   <label>N d'etudiants DEC</label>
+                   </div>
+                  
+                   <div>
+                     <input type="checkbox" name="order" value="depart"
+                     <% if (appliedFilters != null && Arrays.asList(appliedFilters).contains("depart")) out.print("checked"); %>
+               
+                     >
+                   <label>Département</label>
+                   </div>
+                   
+                  <div> <button type="submit">Appliquer</button></div>
+                 
+            </form>
 
 			<%
 			List<Filiere> filieres = (List<Filiere>) request.getAttribute("filieres");
