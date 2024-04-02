@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import com.sms.beans.Etudiant;
+import com.sms.beans.Filiere;
 import com.sms.service.DefaultService;
 
 /**
@@ -59,7 +60,10 @@ public class InsertStudentServlet extends HttpServlet {
 		et.setCne(cneIntValue);
 		et.setNom(nom);
 		et.setPrenom(prenom);
-		et.setFiliereId(Integer.parseInt(filiere));
+		
+		Filiere fl = new Filiere();
+		fl.setId(Integer.parseInt(filiere));
+		et.setFiliere(fl);
 		et.setTel(tel);
 		
 		if(DefaultService.getServiceInstance().insertStudent(et)) {
