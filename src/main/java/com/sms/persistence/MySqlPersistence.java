@@ -26,20 +26,53 @@ public class MySqlPersistence implements Persistence {
 	}
 
 	@Override
-	public List<Etudiant> getAllStudents() {
+	public List<Etudiant> getAllStudents(String[] filters) {
 		// TODO Auto-generated method stub
 		List<Etudiant> etudiants = new ArrayList<Etudiant>();
 
 		try {
 			Connection conn = this.getConnection();
+			String sql = "SELECT etudiants.id,cne,nom,prenom,tel,filieres.filiere,departements.departement " + ""
+					+ "  FROM etudiants,filieres,departements"
+					+ " WHERE etudiants.filiere=filieres.id AND filieres.departement = departements.id ";
 
+			if(filters != null && filters.length > 0) {
+				sql += " ORDER BY ";
+				boolean thereIsAnOrderByBeforeYou = false;
+				for(String filter : filters) {
+					switch (filter.toLowerCase()) {
+					case "cne": 
+						
+						sql += " cne" ;
+						thereIsAnOrderByBeforeYou = true;
+						continue;
+					
+					case "nom":
+						sql += thereIsAnOrderByBeforeYou?" ,nom ":" nom ";
+						thereIsAnOrderByBeforeYou = true;
+						continue;
+					case "depart":
+						sql += thereIsAnOrderByBeforeYou?" ,departements.departement ":" departements.departement ";
+						thereIsAnOrderByBeforeYou = true;
+						continue;
+					case "prenom":
+						sql += thereIsAnOrderByBeforeYou?" ,prenom ":" prenom ";
+						thereIsAnOrderByBeforeYou = true;
+						continue;
+					case "major":
+						sql += thereIsAnOrderByBeforeYou?" ,filieres.filiere ":" filieres.filiere ";
+						thereIsAnOrderByBeforeYou = true;
+						continue;
+					default:
+						continue;
+					}
+				}
+				
+			}
 			if (conn != null) {
 				Statement stmt = conn.createStatement();
-				ResultSet resultat = stmt.executeQuery(
-						"SELECT etudiants.id,cne,nom,prenom,tel,filieres.filiere,departements.departement " + ""
-								+ "  FROM etudiants,filieres,departements"
-								+ " WHERE etudiants.filiere=filieres.id AND filieres.departement = departements.id ORDER BY filieres.filiere;");
-
+				ResultSet resultat = stmt.executeQuery(sql);
+				System.out.println(sql);
 				while (resultat.next()) {
 					Etudiant et = new Etudiant();
 					et.setId(resultat.getInt("id"));
