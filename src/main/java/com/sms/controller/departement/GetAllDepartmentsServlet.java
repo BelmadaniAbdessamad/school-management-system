@@ -29,7 +29,12 @@ public class GetAllDepartmentsServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.setAttribute("departements", DefaultService.getServiceInstance().getAllDepartements());
+		String[] filters= request.getParameterValues("order") ;
+		if(filters != null) {
+			for(String filter : filters) { System.out.println(filter);}
+		}
+		request.setAttribute("departements", DefaultService.getServiceInstance().getAllDepartements(filters));
+		request.setAttribute("filters", filters);
 		request.getRequestDispatcher("/WEB-INF/departements.jsp").forward(request, response);
 	}
 

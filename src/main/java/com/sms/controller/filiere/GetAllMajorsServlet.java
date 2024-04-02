@@ -28,8 +28,14 @@ public class GetAllMajorsServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("filieres", DefaultService.getServiceInstance().getAllMajors());
+		String[] filters= request.getParameterValues("order") ;
+		if(filters != null) {
+			for(String filter : filters) { System.out.println(filter);}
+		}
+		request.setAttribute("filieres", DefaultService.getServiceInstance().getAllMajors(filters));
+		request.setAttribute("filters", filters);
 		request.getRequestDispatcher("/WEB-INF/filieres.jsp").forward(request, response);
+		
 	}
 	
 
