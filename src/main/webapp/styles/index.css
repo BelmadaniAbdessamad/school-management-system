@@ -57,7 +57,7 @@ header  a {
 }
 
 .active-tab {
-	border-bottom: greenyellow 2px solid;
+	border-bottom: #007bff 2px solid;
 }
 
 /* main css*/

@@ -65,13 +65,31 @@ th {
 
 .filters{
 	 display: flex;
-    align-content: center;
+    align-items: center;
     justify-content: space-between;
-    width: 33rem;
+    width: 30rem;
     height: 2rem;
     font-weight: 600;
+    font-size: small;
+}
+.filters>div{
+	display: flex;
+	    align-items: center;
+}
+
+.filters>div input{
+	margin-right: .2rem;
 }
 
 .filters button{
-	padding:1px;
+	padding: 2.5px 5px;
+	background-color: #007bff;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: smaller;
 }
+
+
+
