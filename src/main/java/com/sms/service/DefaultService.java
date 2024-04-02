@@ -67,8 +67,8 @@ public class DefaultService implements Service {
 	}
 
 	@Override
-	public List<Filiere> getAllMajors() {
-		List<Filiere> filieres = persistence.getAllMajors();
+	public List<Filiere> getAllMajors(String [] filters) {
+		List<Filiere> filieres = persistence.getAllMajors(filters);
 		if(filieres != null && filieres.size() >=1) {
 			return filieres;
 		}
@@ -97,8 +97,8 @@ public class DefaultService implements Service {
 	}
 
 	@Override
-	public List<Departement> getAllDepartements() {
-		List<Departement> departements = persistence.getAllDepartements();
+	public List<Departement> getAllDepartements(String [] filters) {
+		List<Departement> departements = persistence.getAllDepartements(filters);
 		if(departements != null && departements.size() >=1) {
 			return departements;
 		}

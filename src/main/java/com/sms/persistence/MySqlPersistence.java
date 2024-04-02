@@ -112,7 +112,7 @@ public class MySqlPersistence implements Persistence {
 
 		// TODO Auto-generated method stub
 
-		for (Etudiant et : getAllStudents()) {
+		for (Etudiant et : getAllStudents(null)) {
 			String etFullName1 = et.getNom() + " " + et.getPrenom();
 			String etFullName2 = et.getPrenom() + " " + et.getNom();
 			if (etFullName1.equalsIgnoreCase(fullName) || etFullName2.equalsIgnoreCase(fullName))
@@ -176,19 +176,51 @@ public class MySqlPersistence implements Persistence {
 	}
 
 	@Override
-	public List<Filiere> getAllMajors() {
+	public List<Filiere> getAllMajors(String [] filters) {
 		List<Filiere> filieres = new ArrayList<Filiere>();
 
 		try {
 			Connection conn = this.getConnection();
-
+			String sql = "SELECT m.id, m.filiere ,d.departement,"
+					+ "                    COUNT(DISTINCT s.id) AS student_count "
+					+ "                    FROM filieres m LEFT JOIN departements d ON m.departement = d.id "
+					+ "                    LEFT JOIN etudiants s ON m.id = s.filiere "
+					+ "                   GROUP BY m.id, m.filiere, m.departement ";
+			if(filters != null && filters.length > 0) {
+				sql += " ORDER BY ";
+				boolean thereIsAnOrderByBeforeYou = false;
+				for(String filter : filters) {
+					switch (filter.toLowerCase()) {
+					case "major": 
+						
+						sql += " m.filiere" ;
+						thereIsAnOrderByBeforeYou = true;
+						continue;
+					
+					case "student-count-asc":
+						sql += thereIsAnOrderByBeforeYou?" ,student_count ASC ":" student_count ASC ";
+						thereIsAnOrderByBeforeYou = true;
+						continue;
+					case "student-count-dec":
+						sql += thereIsAnOrderByBeforeYou?" ,student_count DESC ":" student_count DESC ";
+						thereIsAnOrderByBeforeYou = true;
+						continue;
+					case "depart":
+						sql += thereIsAnOrderByBeforeYou?" ,d.departement ":" d.departement ";
+						thereIsAnOrderByBeforeYou = true;
+						continue;
+					
+					default:
+						continue;
+					}
+				}
+				
+			}
+			
+			System.out.println(sql);
 			if (conn != null) {
 				Statement stmt = conn.createStatement();
-				ResultSet resultat = stmt.executeQuery("SELECT m.id, m.filiere ,d.departement,"
-						+ "                    COUNT(DISTINCT s.id) AS student_count "
-						+ "                    FROM filieres m LEFT JOIN departements d ON m.departement = d.id "
-						+ "                    LEFT JOIN etudiants s ON m.id = s.filiere "
-						+ "                   GROUP BY m.id, m.filiere, m.departement;");
+				ResultSet resultat = stmt.executeQuery(sql);
 
 				while (resultat.next()) {
 					Filiere major = new Filiere();
@@ -408,21 +440,59 @@ public class MySqlPersistence implements Persistence {
 	}
 
 	@Override
-	public List<Departement> getAllDepartements() {
+	public List<Departement> getAllDepartements(String [] filters) {
 		List<Departement> departements = new ArrayList<Departement>();
 
 		try {
 			Connection conn = this.getConnection();
+			String sql ="SELECT d.id, d.departement ,\r\n"
+					+ "                    COUNT(DISTINCT s.id) AS student_count,\r\n"
+					+ "                    COUNT(DISTINCT m.id) AS major_count \r\n"
+					+ "                    FROM departements d\r\n"
+					+ "                    LEFT JOIN filieres m ON d.id = m.departement \r\n"
+					+ "                    LEFT JOIN etudiants s ON m.id = s.filiere \r\n"
+					+ "                   GROUP BY d.id, d.departement";
 
+			if(filters != null && filters.length > 0) {
+				sql += " ORDER BY ";
+				boolean thereIsAnOrderByBeforeYou = false;
+				for(String filter : filters) {
+					switch (filter.toLowerCase()) {
+					case "depart": 
+						
+						sql += " d.departement " ;
+						thereIsAnOrderByBeforeYou = true;
+						continue;
+					
+					case "student-count-asc":
+						sql += thereIsAnOrderByBeforeYou?" ,student_count ASC ":" student_count ASC ";
+						thereIsAnOrderByBeforeYou = true;
+						continue;
+					case "student-count-dec":
+						sql += thereIsAnOrderByBeforeYou?" ,student_count DESC ":" student_count DESC ";
+						thereIsAnOrderByBeforeYou = true;
+						continue;
+					case "major-count-asc":
+						sql += thereIsAnOrderByBeforeYou?" ,major_count ASC ":" major_count ASC ";
+						thereIsAnOrderByBeforeYou = true;
+						continue;
+					case "major-count-dec":
+						sql += thereIsAnOrderByBeforeYou?" ,major_count DESC ":" major_count DESC ";
+						thereIsAnOrderByBeforeYou = true;
+						continue;
+					
+					
+					default:
+						continue;
+					}
+				}
+				
+			}
+			
+			System.out.println(sql);
 			if (conn != null) {
 				Statement stmt = conn.createStatement();
-				ResultSet resultat = stmt.executeQuery("SELECT d.id, d.departement ,\r\n"
-						+ "                    COUNT(DISTINCT s.id) AS student_count,\r\n"
-						+ "                    COUNT(DISTINCT m.id) AS major_count \r\n"
-						+ "                    FROM departements d\r\n"
-						+ "                    LEFT JOIN filieres m ON d.id = m.departement \r\n"
-						+ "                    LEFT JOIN etudiants s ON m.id = s.filiere \r\n"
-						+ "                   GROUP BY d.id, d.departement;");
+				ResultSet resultat = stmt.executeQuery(sql);
 
 				while (resultat.next()) {
 					Departement depart = new Departement();
@@ -448,7 +518,7 @@ public class MySqlPersistence implements Persistence {
 
 	@Override
 	public Etudiant findStudentByCNE(int cne) {
-		for (Etudiant et : getAllStudents()) {
+		for (Etudiant et : getAllStudents(null)) {
 			
 			if (et.getCne() == cne)
 				return et;
@@ -459,7 +529,7 @@ public class MySqlPersistence implements Persistence {
 	@Override
 	public Filiere findMajorByName(String name) {
 		
-         for (Filiere major : getAllMajors()) {
+         for (Filiere major : getAllMajors(null)) {
 			
 			if (major.getNom().equalsIgnoreCase(name) )
 				return major;
@@ -470,7 +540,7 @@ public class MySqlPersistence implements Persistence {
 	@Override
 	public Filiere findMajorById(int id) {
 		
-    for (Filiere major : getAllMajors()) {
+    for (Filiere major : getAllMajors(null)) {
 			
 			if (major.getId()==id  )
 				return major;
@@ -481,7 +551,7 @@ public class MySqlPersistence implements Persistence {
 	@Override
 	public Departement findDepartByName(String name) {
 		
-		for (Departement depart : getAllDepartements()) {
+		for (Departement depart : getAllDepartements(null)) {
 			
 			if (depart.getNom().equalsIgnoreCase(name) )
 				return depart;
@@ -491,7 +561,7 @@ public class MySqlPersistence implements Persistence {
 
 	@Override
 	public Departement findDepartById(int id) {
-        for (Departement depart : getAllDepartements()) {
+        for (Departement depart : getAllDepartements(null)) {
 			
 			if (depart.getId()==id )
 				return depart;
