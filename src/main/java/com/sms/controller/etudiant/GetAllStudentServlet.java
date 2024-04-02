@@ -30,12 +30,17 @@ public class GetAllStudentServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.setAttribute("etudiants", DefaultService.getServiceInstance().getAllStudents());
+		String[] filters= request.getParameterValues("order") ;
+		if(filters != null) {
+			for(String filter : filters) { System.out.println(filter);}
+		}
+		request.setAttribute("etudiants", DefaultService.getServiceInstance().getAllStudents(filters));
+		request.setAttribute("filters", filters);
 		request.getRequestDispatcher("/WEB-INF/etudiants.jsp").forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see Ht] filters=tpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
