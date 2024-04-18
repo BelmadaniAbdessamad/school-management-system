@@ -18,7 +18,7 @@
 	<header>
 
 		<h3 id="logo">
-			<a href="index.html"> SMS - ENS</a>
+			<a href="index.jsp"> SMS - ENS</a>
 		</h3>
 		<ul>
 			<li class="active-tab"><a href="get-students">Etudiants</a></li>

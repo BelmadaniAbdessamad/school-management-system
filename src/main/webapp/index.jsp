@@ -15,14 +15,22 @@
 <body>
     <header>
 
-        <h3 id="logo"><a href="index.html"> SMS - ENS</a></h3>
+        <h3 id="logo"><a href="index.jsp"> SMS - ENS</a></h3>
         <ul>
             <li><a href="get-students">Etudiants</a></li>
             <li><a href="get-departs">Departments</a></li>
             <li><a href="get-majors">Filières</a></li>
         </ul>
     </header>
-    <main class="container"> Welcome to the Homepage</main>
+    <main class="container"><p> Welcome to the Homepage</p> </br>
+     <form method="post">
+    <h3>Login</h3>
+    <div> <label for="username">username</label><input required id="username" name="username"></div>
+    <div> <label for="password">password</label><input  type="password" required id="password" name="password"></div>
+    <button>Login</button>
+    </form>
+    </main>
+   
 </body>
 
 </html>
