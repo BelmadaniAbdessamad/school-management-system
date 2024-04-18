@@ -15,7 +15,14 @@ public class Auth {
 	}
 
 	
-	
+	public static boolean logout() {
+		if(isAuthorized) {
+			isAuthorized = false;
+			return true;
+		}
+		
+		return false;
+	}
 	
 	
 	public static boolean login(String usr,String pass) {
