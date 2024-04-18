@@ -6,11 +6,11 @@ public class Auth {
 	private final static String password = "admin";
 	private static boolean isAuthorized = false;
 	
-	public static boolean login(String usr,String pass) {
+	private static boolean isCredentialsValid(String usr,String pass) {
 		return username.equals(usr) && password.equals(pass);
 	}
 
-	public static boolean isAuthorized() {
+	private static boolean isAuthorized() {
 		return isAuthorized;
 	}
 
