@@ -1,3 +1,6 @@
+
+<%@page import="com.sms.service.Auth"%>
+
 <%@page import="com.sms.beans.Filiere"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Map"%>
@@ -70,3 +73,6 @@
 	</main>
 </body>
 </html>
+
+
+<% if(!Auth.isAuthorized()) response.sendRedirect("index.jsp"); %>

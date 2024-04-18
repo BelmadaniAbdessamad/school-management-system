@@ -1,3 +1,4 @@
+<%@page import="com.sms.service.Auth"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -37,3 +38,6 @@
 
 </body>
 </html>
+
+
+<% if(!Auth.isAuthorized()) response.sendRedirect("index.jsp"); %>
