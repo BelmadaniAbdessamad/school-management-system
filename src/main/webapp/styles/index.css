@@ -71,3 +71,37 @@ main {
 .msg-box {
 	text-align: center;
 }
+
+/* login form css*/
+
+
+
+.login{
+	display:flex;
+	flex-direction: column;
+	    align-items: center;
+    justify-content: space-between;
+    height: 9rem;
+}
+
+.login div{
+	display: flex;
+	flex-direction: column;
+}
+
+
+.login input{
+	padding: 6px;
+	margin-top:.2rem;
+	margin-bottom: .5rem;
+}
+
+.login button{
+	padding :10px;
+	width:100%;
+	margin-top: .5rem;
+}
+
+.login h3{
+	margin-bottom:1rem;
+}
