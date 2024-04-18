@@ -1,3 +1,4 @@
+<%@page import="com.sms.service.Auth"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -23,7 +24,7 @@
         </ul>
     </header>
     <main class="container"><p> Welcome to the Homepage</p> </br>
-     <form method="post">
+     <form method="post" class="login" style="<% if(Auth.isAuthorized()) out.print(";display :none\""); %>">
     <h3>Login</h3>
     <div> <label for="username">username</label><input required id="username" name="username"></div>
     <div> <label for="password">password</label><input  type="password" required id="password" name="password"></div>
