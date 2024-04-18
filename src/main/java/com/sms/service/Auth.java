@@ -18,7 +18,14 @@ public class Auth {
 	
 	
 	
-	
+	public static boolean login(String usr,String pass) {
+		if(isCredentialsValid(usr, pass)) {
+			isAuthorized = true;
+			return isAuthorized;
+		}
+		
+		return false;
+	}
 	
 	
 	
