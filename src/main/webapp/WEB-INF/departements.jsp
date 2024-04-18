@@ -42,8 +42,8 @@
 		<section class="student-section">
 		  <% if(request.getAttribute("messages") != null) out.print("<h4 class=\"msg-box\"><b><i>"+request.getAttribute("messages")+"</i></b></h4>"); %>
 	
-			<h2 class="table-title">Liste des Départements  - <a href="insertDepartement.jsp">Insérer un Départments</a></h2>
- 
+			
+ 					<h2  class="table-title">Liste des Départements <% if(Auth.isAuthorized()) out.print(" - <a href=\"insertDepartement.jsp\">Insérer un Départments</a>"); %></h2>
            <form class="filters" action="get-departs" style="width: 49rem">
                   <span>ORDER BY : </span>
                  <%
@@ -117,7 +117,7 @@
 							<th>Département</th>
 							<th>Nombre des Filières</th>
 							<th>Nombres des étudiants</th>
-							<th>actions</th>
+							<% if(Auth.isAuthorized()) out.print("<th>actions</th>"); %>
 							
 
 						</tr>
@@ -133,7 +133,7 @@
 							<td><%=depart.getNom()%></td>
 							<td><%=depart.getFiliereCount()+" Filières"%></td>
 							<td><%=depart.getEtudiantCount()+" Etudiants"%></td>
-							<td>
+							<td style="<% if(!Auth.isAuthorized()) out.print("display :none\""); %>">
 							<form onsubmit="return confirmSubmit('cet département')" action="delete-depart" method="post"><input value="<%=depart.getId()%>" name="toDeleteId" required type="hidden">
 							<button type="submit">Delete</button></form>
 							</td>

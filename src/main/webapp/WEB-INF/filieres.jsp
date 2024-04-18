@@ -49,10 +49,9 @@
 				out.print("<h4 class=\"msg-box\"><b><i>" + request.getAttribute("messages") + "</i></b></h4>");
 			%>
 
-			<h2 class="table-title">
-				Liste des Filières - <a href="insertFiliere.jsp">Insérer un
-					Filière</a>
-			</h2>
+			
+			
+				<h2  class="table-title">Liste des Filières <% if(Auth.isAuthorized()) out.print(" - <a href=\"insertFiliere.jsp\">Insérer un Filière</a>"); %></h2>
 			
 			 <form class="filters" action="get-majors" style="width: 39rem">
                   <span>ORDER BY : </span>
@@ -117,7 +116,7 @@
 							<th>Filière</th>
 							<th>Département</th>
 							<th>Nombre des Etudiants</th>
-							<th>actions</th>
+							<% if(Auth.isAuthorized()) out.print("<th>actions</th>"); %>
 
 						</tr>
 					</thead>
@@ -135,7 +134,7 @@
 							<td><%=fl.getDepartement().getNom() %></td>
 							<td><%=fl.getEtudiantCount()+" Etudiants"%></td>
 
-							<td>
+							<td  style="<% if(!Auth.isAuthorized()) out.print("display :none\""); %>">
 								<form onsubmit="return confirmSubmit('cet filière')" action="delete-major" method="post">
 									<input value="<%=fl.getId()%>" name="toDeleteId" required
 										type="hidden">
