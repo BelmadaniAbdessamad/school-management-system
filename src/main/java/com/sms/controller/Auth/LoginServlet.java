@@ -45,7 +45,7 @@ public class LoginServlet extends HttpServlet {
 
 		if (Auth.login(username, password)) {
 			
-			request.getRequestDispatcher("get-students").forward(request, response);
+			response.sendRedirect("get-students");
 		} else {
 			messages = "Internal server error , Please try again later";
 			request.setAttribute("messages", messages);
