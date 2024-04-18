@@ -10,7 +10,7 @@ public class Auth {
 		return username.equals(usr) && password.equals(pass);
 	}
 
-	private static boolean isAuthorized() {
+	public static boolean isAuthorized() {
 		return isAuthorized;
 	}
 
