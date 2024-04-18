@@ -21,10 +21,15 @@
             <li><a href="get-students">Etudiants</a></li>
             <li><a href="get-departs">Departments</a></li>
             <li><a href="get-majors">Filières</a></li>
+            
+            <li style="margin-left: 3rem;<% if(!Auth.isAuthorized()) out.print(";display :none\""); %>"><a href="logout" style="color:red;">Logout</a></li>
         </ul>
+        
+       
     </header>
     <main class="container"><p> Welcome to the Homepage</p> </br>
-     <form method="post" class="login" style="<% if(Auth.isAuthorized()) out.print(";display :none\""); %>">
+      <% if(request.getAttribute("messages") != null) out.print("<h4 class=\"msg-box\"><b><i>"+request.getAttribute("messages")+"</i></b></h4>"); %>
+     <form method="post" action="login" class="login" style="<% if(Auth.isAuthorized()) out.print(";display :none\""); %>">
     <h3>Login</h3>
     <div> <label for="username">username</label><input required id="username" name="username"></div>
     <div> <label for="password">password</label><input  type="password" required id="password" name="password"></div>
