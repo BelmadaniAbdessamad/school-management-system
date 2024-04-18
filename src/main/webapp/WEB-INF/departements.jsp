@@ -1,3 +1,4 @@
+<%@page import="com.sms.service.Auth"%>
 <%@page import="java.util.Arrays"%>
 <%@page import="com.sms.beans.Departement"%>
 <%@page import="java.util.List"%>
@@ -22,6 +23,8 @@
             <li><a href="get-students">Etudiants</a></li>
             <li class="active-tab"><a href="get-departs">Departments</a></li>
             <li><a href="get-majors">Filières</a></li>
+            
+             <li style="margin-left: 3rem;<% if(!Auth.isAuthorized()) out.print(";display :none\""); %>"><a href="logout" style="color:red;">Logout</a></li>
         </ul>
     </header>
    	<main class="container">

@@ -18,6 +18,8 @@
             <li><a href="get-students">Etudiants</a></li>
             <li class="active-tab"><a href="get-departs">Departments</a></li>
             <li><a href="get-majors">Filières</a></li>
+            
+             <li style="margin-left: 3rem;"><a href="logout" style="color:red;">Logout</a></li>
         </ul>
     </header>
     
